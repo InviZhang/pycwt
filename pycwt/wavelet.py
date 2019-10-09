@@ -314,6 +314,7 @@ def significance(signal, dt, scales, sigma_test=0, alpha=None,
 
 
 def xwt(y1, y2, dt, dj=1/12, s0=-1, J=-1, significance_level=0.95,
+        a1=-1, a2=-1,
         wavelet='morlet', normalize=True):
     """Cross wavelet transform (XWT) of two signals.
 
@@ -407,8 +408,10 @@ def xwt(y1, y2, dt, dj=1/12, s0=-1, J=-1, significance_level=0.95,
     # to be calculated.
     if normalize:
         std1 = std2 = 1.
-    a1, _, _ = ar1(y1)
-    a2, _, _ = ar1(y2)
+    if al == -1:
+        a1, _, _ = ar1(y1)
+    if a2 == -1:
+        a2, _, _ = ar1(y2)
     Pk1 = ar1_spectrum(freq * dt, a1)
     Pk2 = ar1_spectrum(freq * dt, a2)
     dof = wavelet.dofmin
