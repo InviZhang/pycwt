@@ -254,7 +254,7 @@ def significance(signal, dt, scales, sigma_test=0, alpha=None,
     # equation 16.
     def pk(k, a, N):
         return (1 - a ** 2) / (1 + a ** 2 - 2 * a * np.cos(2 * np.pi * k / N))
-    fft_theor = pk(freq, alpha, n0)
+    fft_theor = pk(freq, alpha, 1)
     fft_theor = variance * fft_theor     # Including time-series variance
     signif = fft_theor
 
